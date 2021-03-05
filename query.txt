@@ -23,7 +23,50 @@
 
 
 4. Seleziona tutti gli ospiti il cui nome inizia con la D.
+
+    SELECT *
+    FROM `ospiti`
+    WHERE `name` LIKE 'd%';
+
+
 5. Calcolare il totale degli ospiti paganti.
+
+    //Se inteso come totale del prezzo di chi ha pagato
+
+    SELECT SUM(`price`) AS 'totale_pagamenti_accettati'
+    FROM `pagamenti`
+    WHERE `status` = 'accepted';
+
+
+    //Se inteso come numero totale pagamenti accettati
+
+    SELECT COUNT(`id`)
+    FROM `pagamenti`  
+    WHERE `status` = 'accepted';
+
+    
+    //Se inteso come totale numero tabella 'paganti'
+
+    SELECT COUNT(`id`) AS 'ospiti_paganti'
+    FROM `paganti`;
+
+
 6. Qual è il prezzo massimo pagato?
+
+    SELECT MAX(`price`) AS 'massimo_prezzo_pagato'
+    FROM `pagamenti`
+    WHERE `status` = 'accepted';
+
+
 7. Seleziona gli ospiti riconosciuti con patente e nati nel 1975.
+
+    SELECT *
+    FROM `ospiti`
+    WHERE `document_type` = 'driver license'
+    AND YEAR(`date_of_birth`) = 1975;
+
+
 8. Quanti posti letto ha l'hotel in totale?
+
+    SELECT SUM(`beds`) AS 'posti_letto'
+    FROM `stanze`;
